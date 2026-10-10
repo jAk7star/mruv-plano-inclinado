@@ -122,7 +122,7 @@ mruv-plano-inclinado/
 
 ### 1. Clonar o repositório
 ```bash
-git clone https://github.com/SEU-USUARIO/mruv-plano-inclinado.git
+git clone https://github.com/jAk7star/mruv-plano-inclinado.git
 cd mruv-plano-inclinado
 ```
 
