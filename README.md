@@ -1,8 +1,8 @@
 # 🏎️ MRUV no Plano Inclinado - Estudo Cinematográfico e Ajuste por Mínimos Quadrados
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen.svg)]()
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](#)
+[![Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen.svg)](#)
 
 Este repositório contém a análise experimental do **Movimento Retilíneo Uniformemente Variado (MRUV)** para um móvel deslizando em um **Trilho de Ar** em plano inclinado sob ação da aceleração da gravidade, com dados registrados por fotosensores.
 
@@ -144,4 +144,4 @@ python src/mruv_interativo.py
 ---
 
 ## 📜 Licença
-Disponibilizado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Disponibilizado sob a licença MIT.
