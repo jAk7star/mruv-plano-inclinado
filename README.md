@@ -141,7 +141,3 @@ python src/calculos_cinematica.py
 python src/mruv_interativo.py
 ```
 
----
-
-## 📜 Licença
-Disponibilizado sob a licença MIT.
