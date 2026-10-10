@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "specification_version": "1.0",
+  "title": "Especificação de Renderização Gráfica e Processamento de Dados de MRUV",
+  "description": "Schema completo para processamento pelo Método dos Mínimos Quadrados e renderização de gráficos científicos conforme normas de Física Experimental.",
+  "experiment_metadata": {
+    "title": "Movimento Retilíneo Uniformemente Variado em Plano Inclinado",
+    "track_type": "Trilho de Ar com Fotosensores",
+    "sensor_gap_m": 0.2,
+    "gravity_m_s2": 9.81
+  },
+  "input_datasets": [
+    {
+      "inclination_deg": 5.0,
+      "theoretical_acceleration_m_s2": 0.855,
+      "experimental_acceleration_m_s2": 0.658,
+      "points": [
+        {"id": 1, "position_m": 0.2, "time_s": 0.787},
+        {"id": 2, "position_m": 0.4, "time_s": 1.098},
+        {"id": 3, "position_m": 0.6, "time_s": 1.346},
+        {"id": 4, "position_m": 0.8, "time_s": 1.553}
+      ]
+    },
+    {
+      "inclination_deg": 10.0,
+      "theoretical_acceleration_m_s2": 1.7035,
+      "experimental_acceleration_m_s2": 1.432,
+      "points": [
+        {"id": 1, "position_m": 0.2, "time_s": 0.533},
+        {"id": 2, "position_m": 0.4, "time_s": 0.745},
+        {"id": 3, "position_m": 0.6, "time_s": 0.913},
+        {"id": 4, "position_m": 0.8, "time_s": 1.054}
+      ]
+    }
+  ],
+  "mathematical_engine": {
+    "linearization": {
+      "new_variable": "z",
+      "formula": "z_i = t_i ** 2",
+      "unit": "s²"
+    },
+    "least_squares_regression": {
+      "objective": "Minimizar a soma dos quadrados dos desvios entre os pontos e a reta ajustada",
+      "steps": [
+        {"step": "calculate_means", "formulas": ["z_bar = mean(z)", "x_bar = mean(x)"]},
+        {"step": "calculate_deviations", "formulas": ["delta_z_i = z_i - z_bar", "delta_x_i = x_i - x_bar"]},
+        {"step": "calculate_slope_C", "formula": "C = sum(delta_z_i * delta_x_i) / sum(delta_z_i ** 2)"},
+        {"step": "calculate_intercept_b", "formula": "b = x_bar - C * z_bar"},
+        {"step": "calculate_acceleration", "formula": "a_exp = 2 * C"},
+        {"step": "calculate_relative_error", "formula": "E_r = abs(a_exp - a_teor) / a_teor * 100"}
+      ]
+    }
+  },
+  "metrological_visualization_rules": {
+    "axis_occupation": {
+      "rule": "O conjunto de pontos deve ocupar no mínimo 75% da extensão útil do eixo",
+      "min_percentage": 75
+    },
+    "ticks_configuration": {
+      "min_marks": 3,
+      "max_marks": 7,
+      "numbering_style": "Valores inteiros ou decimais convenientes, igualmente espaçados"
+    },
+    "data_points_style": {
+      "representation": "Pontos isolados (scatter plot markers)",
+      "connect_with_straight_lines": false
+    },
+    "curve_fitting_style": {
+      "linearized_plot": "Reta contínua referente ao ajuste do MMQ x(z) = C*z + b",
+      "non_linear_plot": "Parábola contínua e suave x(t) = C*t² + b"
+    },
+    "axis_labels": {
+      "position_axis": "Posição x (m)",
+      "time_axis": "Tempo t (s)",
+      "time_squared_axis": "Tempo ao Quadrado t² (s²)"
+    }
+  }
+}
